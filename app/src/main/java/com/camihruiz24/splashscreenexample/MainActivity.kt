@@ -19,21 +19,21 @@ import com.camihruiz24.splashscreenexample.ui.theme.SplashScreenExampleTheme
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         /**
-         * Se puede instanciar la splash screen si se necesita para después, pero con
-         * apply se aplican las modificaciones necesarias inmediatamente
+         * Se puede instanciar la splash screen si se necesita para después.
+         * Con apply se aplican las modificaciones necesarias inmediatamente por lo que no es necesario instanciarla.
           */
         val splashScreen: SplashScreen = installSplashScreen().apply {
             setKeepOnScreenCondition {
                 viewModel.isLoading.value
             }
             // Cuando queremos hacer algo justo luego de salir de la Splash Screen
-            //this.setOnExitAnimationListener
+            this.setOnExitAnimationListener{}
         }
 
         setContent {
